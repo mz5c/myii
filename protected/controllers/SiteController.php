@@ -108,6 +108,6 @@ class SiteController extends Controller
 	}
 
 	public function actionHello($words = 'hello world'){
-		echo 'what you want to say : '.$words.'<br>';
+		$this->render('hello',array('words' => $words));
 	}
 }
