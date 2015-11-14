@@ -5,4 +5,10 @@
  * Date: 2015/11/14
  * Time: 12:57
  */
-echo 'what you want to say : '.$words.'<br>';
+$this->pageTitle=Yii::app()->name.' - Hello';
+$this->breadcrumbs=array(
+    'Hello',
+);?>
+<h1>Hello</h1>
+<?php echo 'what you want to say : '.$words.'<br>';
+?>
