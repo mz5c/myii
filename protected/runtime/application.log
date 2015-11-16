@@ -1,0 +1,74 @@
+2015/11/13 12:31:10 [error] [php] Array to string conversion (D:\xampp\htdocs\myii\protected\views\layouts\main.php:43)
+Stack trace:
+#0 D:\xampp\htdocs\myii\framework\web\widgets\CContentDecorator.php(76): SiteController->renderFile()
+#1 D:\xampp\htdocs\myii\framework\web\widgets\CContentDecorator.php(54): CContentDecorator->decorate()
+#2 D:\xampp\htdocs\myii\framework\web\widgets\COutputProcessor.php(44): CContentDecorator->processOutput()
+#3 D:\xampp\htdocs\myii\framework\web\CBaseController.php(214): CContentDecorator->run()
+#4 D:\xampp\htdocs\myii\framework\web\CBaseController.php(308): SiteController->endWidget()
+#5 D:\xampp\htdocs\myii\protected\views\layouts\column1.php(6): SiteController->endContent()
+#6 D:\xampp\htdocs\myii\framework\web\CBaseController.php(126): require()
+#7 D:\xampp\htdocs\myii\framework\web\CBaseController.php(95): SiteController->renderInternal()
+#8 D:\xampp\htdocs\myii\framework\web\CController.php(784): SiteController->renderFile()
+#9 D:\xampp\htdocs\myii\protected\controllers\SiteController.php(32): SiteController->render()
+#10 D:\xampp\htdocs\myii\framework\web\actions\CInlineAction.php(49): SiteController->actionIndex()
+#11 D:\xampp\htdocs\myii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#12 D:\xampp\htdocs\myii\framework\web\CController.php(286): SiteController->runAction()
+#13 D:\xampp\htdocs\myii\framework\web\CController.php(265): SiteController->runActionWithFilters()
+#14 D:\xampp\htdocs\myii\framework\web\CWebApplication.php(282): SiteController->run()
+#15 D:\xampp\htdocs\myii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#16 D:\xampp\htdocs\myii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#17 D:\xampp\htdocs\myii\index.php(13): CWebApplication->run()
+REQUEST_URI=/myii/index.php?r=site/index
+in D:\xampp\htdocs\myii\protected\views\layouts\main.php (43)
+in D:\xampp\htdocs\myii\protected\views\layouts\column1.php (6)
+in D:\xampp\htdocs\myii\protected\controllers\SiteController.php (32)
+2015/11/16 04:16:48 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "gi".' in D:\xampp\htdocs\myii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\myii\framework\web\CWebApplication.php(141): CWebApplication->runController('gi')
+#1 D:\xampp\htdocs\myii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\myii\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/myii/index.php?r=gi
+---
+2015/11/16 04:16:57 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "gidd".' in D:\xampp\htdocs\myii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\myii\framework\web\CWebApplication.php(141): CWebApplication->runController('gidd')
+#1 D:\xampp\htdocs\myii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\myii\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/myii/index.php?r=gidd
+---
+2015/11/16 04:30:55 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in D:\xampp\htdocs\myii\framework\web\auth\CAccessControlFilter.php:182
+Stack trace:
+#0 D:\xampp\htdocs\myii\framework\web\auth\CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), 'You are not aut...')
+#1 D:\xampp\htdocs\myii\framework\web\filters\CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 D:\xampp\htdocs\myii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 D:\xampp\htdocs\myii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 D:\xampp\htdocs\myii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 D:\xampp\htdocs\myii\framework\web\CController.php(291): CFilterChain->run()
+#6 D:\xampp\htdocs\myii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 D:\xampp\htdocs\myii\framework\web\CWebApplication.php(282): CController->run('admin')
+#8 D:\xampp\htdocs\myii\framework\web\CWebApplication.php(141): CWebApplication->runController('user/admin')
+#9 D:\xampp\htdocs\myii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#10 D:\xampp\htdocs\myii\index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/myii/index.php?r=user/admin
+HTTP_REFERER=http://test.localhost.com/myii/index.php?r=user/index
+---
+2015/11/16 04:37:00 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in D:\xampp\htdocs\myii\framework\web\auth\CAccessControlFilter.php:182
+Stack trace:
+#0 D:\xampp\htdocs\myii\framework\web\auth\CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), 'You are not aut...')
+#1 D:\xampp\htdocs\myii\framework\web\filters\CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 D:\xampp\htdocs\myii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 D:\xampp\htdocs\myii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 D:\xampp\htdocs\myii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 D:\xampp\htdocs\myii\framework\web\CController.php(291): CFilterChain->run()
+#6 D:\xampp\htdocs\myii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 D:\xampp\htdocs\myii\framework\web\CWebApplication.php(282): CController->run('admin')
+#8 D:\xampp\htdocs\myii\framework\web\CWebApplication.php(141): CWebApplication->runController('user/admin')
+#9 D:\xampp\htdocs\myii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#10 D:\xampp\htdocs\myii\index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/myii/index.php?r=user/admin
+HTTP_REFERER=http://test.localhost.com/myii/index.php?r=user
+---
