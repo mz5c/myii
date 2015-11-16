@@ -72,3 +72,51 @@ Stack trace:
 REQUEST_URI=/myii/index.php?r=user/admin
 HTTP_REFERER=http://test.localhost.com/myii/index.php?r=user
 ---
+2015/11/16 07:17:08 [error] [php] Undefined index: User (D:\xampp\htdocs\myii\protected\controllers\UserController.php:69)
+Stack trace:
+#0 D:\xampp\htdocs\myii\framework\web\filters\CFilterChain.php(133): UserController->runAction()
+#1 D:\xampp\htdocs\myii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#2 D:\xampp\htdocs\myii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#3 D:\xampp\htdocs\myii\framework\web\filters\CInlineFilter.php(58): UserController->filterAccessControl()
+#4 D:\xampp\htdocs\myii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#5 D:\xampp\htdocs\myii\framework\web\CController.php(291): CFilterChain->run()
+#6 D:\xampp\htdocs\myii\framework\web\CController.php(265): UserController->runActionWithFilters()
+#7 D:\xampp\htdocs\myii\framework\web\CWebApplication.php(282): UserController->run()
+#8 D:\xampp\htdocs\myii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#9 D:\xampp\htdocs\myii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#10 D:\xampp\htdocs\myii\index.php(13): CWebApplication->run()
+REQUEST_URI=/myii/index.php?r=user/create
+in D:\xampp\htdocs\myii\protected\controllers\UserController.php (69)
+in D:\xampp\htdocs\myii\index.php (13)
+2015/11/16 07:17:16 [error] [php] Undefined index: User (D:\xampp\htdocs\myii\protected\controllers\UserController.php:69)
+Stack trace:
+#0 D:\xampp\htdocs\myii\framework\web\filters\CFilterChain.php(133): UserController->runAction()
+#1 D:\xampp\htdocs\myii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#2 D:\xampp\htdocs\myii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#3 D:\xampp\htdocs\myii\framework\web\filters\CInlineFilter.php(58): UserController->filterAccessControl()
+#4 D:\xampp\htdocs\myii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#5 D:\xampp\htdocs\myii\framework\web\CController.php(291): CFilterChain->run()
+#6 D:\xampp\htdocs\myii\framework\web\CController.php(265): UserController->runActionWithFilters()
+#7 D:\xampp\htdocs\myii\framework\web\CWebApplication.php(282): UserController->run()
+#8 D:\xampp\htdocs\myii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#9 D:\xampp\htdocs\myii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#10 D:\xampp\htdocs\myii\index.php(13): CWebApplication->run()
+REQUEST_URI=/myii/index.php?r=user/create
+in D:\xampp\htdocs\myii\protected\controllers\UserController.php (69)
+in D:\xampp\htdocs\myii\index.php (13)
+2015/11/16 07:18:31 [error] [php] Undefined index: User (D:\xampp\htdocs\myii\protected\controllers\UserController.php:69)
+Stack trace:
+#0 D:\xampp\htdocs\myii\framework\web\filters\CFilterChain.php(133): UserController->runAction()
+#1 D:\xampp\htdocs\myii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#2 D:\xampp\htdocs\myii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#3 D:\xampp\htdocs\myii\framework\web\filters\CInlineFilter.php(58): UserController->filterAccessControl()
+#4 D:\xampp\htdocs\myii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#5 D:\xampp\htdocs\myii\framework\web\CController.php(291): CFilterChain->run()
+#6 D:\xampp\htdocs\myii\framework\web\CController.php(265): UserController->runActionWithFilters()
+#7 D:\xampp\htdocs\myii\framework\web\CWebApplication.php(282): UserController->run()
+#8 D:\xampp\htdocs\myii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#9 D:\xampp\htdocs\myii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#10 D:\xampp\htdocs\myii\index.php(13): CWebApplication->run()
+REQUEST_URI=/myii/index.php?r=user/create
+in D:\xampp\htdocs\myii\protected\controllers\UserController.php (69)
+in D:\xampp\htdocs\myii\index.php (13)
