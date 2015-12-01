@@ -38,7 +38,7 @@ return array(
 		),
 
 		// uncomment the following to enable URLs in path-format
-		/*
+
 		'urlManager'=>array(
 			'urlFormat'=>'path',
 			'rules'=>array(
@@ -46,8 +46,9 @@ return array(
 				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
 			),
+			'showScriptName' => false,
 		),
-		*/
+
 
 		// database settings are configured in database.php
 		'db'=>require(dirname(__FILE__).'/database.php'),
