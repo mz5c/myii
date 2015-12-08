@@ -86,6 +86,7 @@ class UserController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
+		//var_dump($id);die;
 		$model=$this->loadModel($id);
 
 		// Uncomment the following line if AJAX validation is needed
@@ -122,6 +123,8 @@ class UserController extends Controller
 	 */
 	public function actionIndex()
 	{
+		/*$res = Yii::app()->db->createCommand("select * from tbl_user where id = :id")->queryAll(true,array(':id'=>1));
+		var_dump($res);die;*/
 		$dataProvider=new CActiveDataProvider('User');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,

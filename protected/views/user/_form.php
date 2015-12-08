@@ -37,6 +37,14 @@
 		<?php echo $form->error($model,'email'); ?>
 	</div>
 
+	<?php if(!$model->isNewRecord){?>
+		<div class="row">
+			<?php echo $form->labelEx($model,'fstatus'); ?>
+			<?php echo $form->textField($model,'fstatus',array('size'=>60,'maxlength'=>128)); ?>
+			<?php echo $form->error($model,'fstatus'); ?>
+		</div>
+	<?php }?>
+
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
 	</div>

@@ -3,12 +3,13 @@
 /* @var $dataProvider CActiveDataProvider */
 
 $this->breadcrumbs=array(
-	'Users',
+	'Users'=>array('index'),
 );
 
 $this->menu=array(
 	array('label'=>'Create User', 'url'=>array('create')),
 	array('label'=>'Manage User', 'url'=>array('admin')),
+	array('label'=>'go to module admin','url'=>array('admin/default')),
 );
 ?>
 

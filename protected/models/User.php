@@ -32,6 +32,7 @@ class User extends CActiveRecord
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, username, password, email', 'safe', 'on'=>'search'),
+			array('fstatus','safe'),
 		);
 	}
 
