@@ -108,6 +108,8 @@ class SiteController extends Controller
 	}
 
 	public function actionHello($words = 'hello world'){
+		//$this->redirect(array('/site/index'));die;
+		//Yii::app()->request->redirect(Yii::app()->createUrl('user'));die;
 		$this->render('hello',array('words' => $words));
 	}
 }

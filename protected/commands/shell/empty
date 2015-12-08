@@ -1,0 +1,1 @@
+0 1 * * * php /webroot/protected/commands/cron.php yourCommand >> /var/log/test.log
