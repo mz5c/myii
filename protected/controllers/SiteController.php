@@ -112,4 +112,10 @@ class SiteController extends Controller
 		//Yii::app()->request->redirect(Yii::app()->createUrl('user'));die;
 		$this->render('hello',array('words' => $words));
 	}
+
+	public function actionUserDetail(){
+		echo Yii::app()->user->id;
+		echo '<br>';
+		echo Yii::getVersion();
+	}
 }
