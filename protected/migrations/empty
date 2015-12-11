@@ -1,0 +1,3 @@
+yiic migrate create file_name
+yiic migrate up
+yiic migrate down

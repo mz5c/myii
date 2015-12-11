@@ -8,12 +8,17 @@ return array(
 
 	// preloading 'log' component
 	'preload'=>array('log'),
+	'import'=>array(
+		'application.models.*',
+		'application.components.*',
+	),
 
 	// application components
 	'components'=>array(
 
 		// database settings are configured in database.php
 		'db'=>require(dirname(__FILE__).'/database.php'),
+		'db_sec'=>require(dirname(__FILE__).'/database_sec.php'),
 
 		'log'=>array(
 			'class'=>'CLogRouter',

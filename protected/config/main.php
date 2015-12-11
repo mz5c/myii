@@ -53,6 +53,7 @@ return array(
 
 		// database settings are configured in database.php
 		'db'=>require(dirname(__FILE__).'/database.php'),
+		'db_sec'=>require(dirname(__FILE__).'/database_sec.php'),
 
 		'errorHandler'=>array(
 			// use 'site/error' action to display errors
