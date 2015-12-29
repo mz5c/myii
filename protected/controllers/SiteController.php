@@ -107,9 +107,22 @@ class SiteController extends Controller
 		$this->redirect(Yii::app()->homeUrl);
 	}
 
-	public function actionHello($words = 'hello world'){
+	public function actionHello($words='hello world'){
 		//$this->redirect(array('/site/index'));die;
 		//Yii::app()->request->redirect(Yii::app()->createUrl('user'));die;
+		/*$words = Yii::app()->request->getParam('words');
+		if(!empty($words)){
+			echo json_encode(array('errcode'=>'success','res'=>$words));
+		}
+		if(Yii::app()->request->isAjaxRequest){
+			$count = (int)Yii::app()->request->getParam('num');
+			$c = new CDbCriteria;
+			$c->select = 'aid,title';
+			$c->limit = $count;
+			$c->order = "create_time DESC";
+			$data = Article::model()->findAll($c);
+			echo CJSON::encode($data);
+		}*/
 		$this->render('hello',array('words' => $words));
 	}
 
@@ -117,5 +130,12 @@ class SiteController extends Controller
 		echo Yii::app()->user->id;
 		echo '<br>';
 		echo Yii::getVersion();
+	}
+
+	public function actionCallAjax(){
+		$words = Yii::app()->request->getParam('words');
+		if(!empty($words)){
+			echo json_encode(array('errcode'=>'success','res'=>md5($words)));
+		}
 	}
 }
