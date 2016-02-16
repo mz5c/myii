@@ -35,7 +35,8 @@ trait ApiTraitTest{
      * @return string 是否通过
      */
     public function actionSayHi() {
-        $this->success('Hi');
+        $field = Yii::app()->request->getParam('field');
+        $this->success($field);
     }
 
     /**
