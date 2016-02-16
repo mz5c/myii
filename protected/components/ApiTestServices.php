@@ -23,6 +23,11 @@ class ApiTestServices extends CComponent{
         return $tmp;
     }
 
+    /**
+     * get area by ip
+     * @param $ip
+     * @return string area
+     */
     public function getAreaByIp($ip){
         $url = 'http://www.ip138.com/ips138.asp?ip='.$ip.'&action=2';
         $res = $this->https_request($url);
@@ -32,6 +37,11 @@ class ApiTestServices extends CComponent{
         return $area[1][0];
     }
 
+    /**
+     * curl
+     * @param $url
+     * @return mixed
+     */
     //https请求（支持GET和POST）
     public function https_request($url) {
         $curl = curl_init();
