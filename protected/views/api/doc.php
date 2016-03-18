@@ -8,10 +8,8 @@
     .method{	 text-decoration:none;	}
     #testTable input{ width:500px;	}
 </style>
-<?php
-Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . "/js/jquery.js");
-?>
-<script src="<?php echo Yii::app()->request->hostInfo.'/myii/js/jquery.js'?>"></script>
+
+<script src="<?php echo Yii::app()->baseUrl.'/js/jquery.js'?>"></script>
 <script type="text/javascript">
     $(function(){
         $(".method").click(function(){
