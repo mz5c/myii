@@ -2,8 +2,8 @@
 
 class ApiController extends Controller
 {
-	use ApiTraitCommon;
-	use ApiTraitTest;
+	//use ApiTraitCommon;
+	//use ApiTraitTest; traits php5.4+
 
 	private $_apiTestServices;
 
@@ -39,6 +39,102 @@ class ApiController extends Controller
 			exit();
 		}
 	}
+
+	/*--------------------------------------------------------------------------------------------------------------------------------*/
+	public $_commonApiNameList=array(
+		'Login',
+		'Logout',
+		'Init',
+		'SearchIp'
+	);
+
+	/**
+	 * Login
+	 * @param string $username
+	 * @param string $password
+	 * @return string 是否通过
+	 */
+	public function actionLogin() {
+		$this->success('success');
+	}
+
+	/**
+	 * Logout
+	 * @param string $username
+	 * @param string $password
+	 * @return string 是否通过
+	 */
+	public function actionLogout() {
+		$this->success('success');
+	}
+
+	/**
+	 * Init
+	 * @param string $username
+	 * @param string $password
+	 * @return string 是否通过
+	 */
+	public function actionInit() {
+		$this->success('success');
+	}
+
+	/**
+	 * Search Ip
+	 * @param string $ip
+	 * @return json
+	 */
+	public function actionSearchIp(){
+		$ip = Yii::app()->request->getParam('ip');
+		if(!empty($ip) && preg_match('/^((\d|([1-9]\d)|(1\d\d)|(2[0-4]\d)|(25[0-5]))\.){3}(\d|([1-9]\d)|(1\d\d)|(2[0-4]\d)|(25[0-5]))$/',$ip)){
+			$res = $this->_apiTestServices->getAreaByIp($ip);
+			$this->success(array('ip'=>$ip,'area'=>$res));
+		}else{
+			$this->error();
+		}
+	}
+	/*--------------------------------------------------------------------------------------------------------------------------------*/
+	public $_testApiNameList=array(
+		'GetRandNum',
+		'SayHi',
+		'Hello',
+	);
+
+	/**
+	 * GetRandNum
+	 * @param $a
+	 * @param $b
+	 * @return mt_rand(a,b)
+	 */
+	public function actionGetRandNum() {
+		$a = Yii::app()->request->getParam('a');
+		$b = Yii::app()->request->getParam('b');
+		if(empty($a) || empty($b) || !is_int((int)$a) || !is_int((int)$b) || $a<0 || $b < $a){
+			$this->error('invalid params');
+		}
+		$this->success(mt_rand($a,$b));
+	}
+
+	/**
+	 * SayHi
+	 * @param string $username
+	 * @param string $password
+	 * @return string 是否通过
+	 */
+	public function actionSayHi() {
+		$field = Yii::app()->request->getParam('field');
+		$this->success($field);
+	}
+
+	/**
+	 * Hello
+	 * @param string $username
+	 * @param string $password
+	 * @return string 是否通过
+	 */
+	public function actionHello() {
+		$this->success('Hello');
+	}
+	/*--------------------------------------------------------------------------------------------------------------------------------*/
 
 	private function success($msg="操作成功！"){
 		header('Content-Type:application/json; charset=utf-8');
