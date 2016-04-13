@@ -138,4 +138,9 @@ class SiteController extends Controller
 			echo json_encode(array('errcode'=>'success','res'=>md5($words)));
 		}
 	}
+
+	public function actionTestMem(){
+		$var = Yii::app()->memcache->get('uid');
+		var_dump($var);
+	}
 }

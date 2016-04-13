@@ -76,6 +76,12 @@ return array(
 			),
 		),
 
+		'cache'=>array(
+			'class'=>'system.caching.CMemCache',
+			'servers'=>array(
+				array('host'=>'localhost','port'=>11211,'weight'=>1),
+			),
+		),
 	),
 
 	// application-level parameters that can be accessed
