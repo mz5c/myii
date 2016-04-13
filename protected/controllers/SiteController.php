@@ -140,7 +140,13 @@ class SiteController extends Controller
 	}
 
 	public function actionTestMem(){
-		$var = Yii::app()->memcache->get('uid');
-		var_dump($var);
+		$var = Yii::app()->cache->get('uid');
+		if(!$var){
+			echo 'none';
+			Yii::app()->cache->set('uid','none_uid',30);
+		}else{
+			var_dump($var);
+			echo 'yes';
+		}
 	}
 }
