@@ -76,7 +76,7 @@ return array(
 			),
 		),
 
-		'cache'=>array(
+		'memcache'=>array(
 			'class'=>'system.caching.CMemCache',
 			'servers'=>array(
 				array('host'=>'localhost','port'=>11211,'weight'=>1),
