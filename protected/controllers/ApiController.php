@@ -138,12 +138,14 @@ class ApiController extends Controller
 
 	private function success($msg="操作成功！"){
 		header('Content-Type:application/json; charset=utf-8');
+		header('Access-Control-Allow-Origin:*');
 		echo CJSON::encode(array("status"=>1,"info"=>$msg));
 		exit();
 	}
 
 	private function error($msg="操作失败！"){
 		header('Content-Type:application/json; charset=utf-8');
+		header('Access-Control-Allow-Origin:*');
 		echo CJSON::encode(array("status"=>0,"info"=>$msg));
 		exit();
 	}
