@@ -34,7 +34,7 @@ class ApiController extends Controller
 			$url = Yii::app()->request->hostInfo.$homeUrl.'Api/'.Yii::app()->request->getParam('name');
 			$doc = $this->_apiTestServices->getDocumentInfo('ApiController',$method);
 			$params = array();
-			preg_match_all("#\\$([a-zA-Z_]*)#",$doc,$params);
+			preg_match_all("#\\$([\w]*)#",$doc,$params);
 			echo json_encode(array('url'=>$url,'doc'=>$doc,'parameter'=>$params[1]));
 			exit();
 		}

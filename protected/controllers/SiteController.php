@@ -11,7 +11,7 @@ class SiteController extends Controller
 			// captcha action renders the CAPTCHA image displayed on the contact page
 			'captcha'=>array(
 				'class'=>'CCaptchaAction',
-				'backColor'=>0xFFFFFF,
+				'backColor'=>0x11FFFF,
 			),
 			// page action renders "static" pages stored under 'protected/views/site/pages'
 			// They can be accessed via: index.php?r=site/page&view=FileName
@@ -39,6 +39,8 @@ class SiteController extends Controller
 	{
 		if($error=Yii::app()->errorHandler->error)
 		{
+			//var_dump($error);die;
+			//var_dump(Yii::app()->request->isAjaxRequest);die;
 			if(Yii::app()->request->isAjaxRequest)
 				echo $error['message'];
 			else
@@ -51,7 +53,7 @@ class SiteController extends Controller
 	 */
 	public function actionContact()
 	{
-		$model=new ContactForm;
+		$model=new ContactForm();
 		if(isset($_POST['ContactForm']))
 		{
 			$model->attributes=$_POST['ContactForm'];
@@ -140,7 +142,7 @@ class SiteController extends Controller
 	}
 
 	public function actionTestMem(){
-		var_dump($this->isMobile());die;
+		//var_dump($this->isMobile());die;
 		$var = Yii::app()->memcache->get('uid');
 		if(!$var){
 			echo 'none';

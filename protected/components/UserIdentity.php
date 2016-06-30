@@ -31,4 +31,15 @@ class UserIdentity extends CUserIdentity
 			$this->errorCode=self::ERROR_NONE;
 		return !$this->errorCode;
 	}
+
+	/**
+	 * Returns the unique identifier for the identity.
+	 * The default implementation simply returns {@link username}.
+	 * This method is required by {@link IUserIdentity}.
+	 * @return string the unique identifier for the identity.
+	 */
+	public function getId()
+	{
+		return rand();
+	}
 }

@@ -18,4 +18,27 @@ class DefaultController extends Controller
 			echo json_encode(array('errcode'=>'success','res'=>md5($words)));
 		}
 	}
+
+	public function actionTest(){
+		echo Yii::app()->user->id;die;
+		echo $this->module->id;
+		echo $this->getModule()->getId();
+		echo $this->id;
+		echo $this->getId();
+		echo $this->action->id;
+		echo $this->getAction()->getId();
+		echo $this->uniqueId;
+		echo $this->getUniqueId();
+	}
+
+	public function actionLogin($name='abc',$passwd='123456'){
+		$user = new UserIdentity($name,$passwd);
+		Yii::app()->user->login($user,5);
+		$this->redirect('/admin/default/test');
+	}
+
+	public function actionLogout(){
+		Yii::app()->user->logout();
+		$this->redirect('/admin/default/hello');
+	}
 }

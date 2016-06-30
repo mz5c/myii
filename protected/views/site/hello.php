@@ -24,7 +24,7 @@ input what you want to say:<input type="text" id="words"><br>
 
     function callAjax(){
         $.ajax({
-            url:"callajax",
+            url:"/admin/default/callajax",
             cache:false,
             type:'post',
             timeout:1000,
@@ -34,7 +34,7 @@ input what you want to say:<input type="text" id="words"><br>
                     alert('success');
                     $('#words').val(o.res);
                 }else{
-                    alert(o.errmsg);
+                    alert(o.res);
                 }
             },
             error: function () {
