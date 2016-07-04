@@ -40,6 +40,6 @@ class UserIdentity extends CUserIdentity
 	 */
 	public function getId()
 	{
-		return rand();
+		return $this->username;
 	}
 }
