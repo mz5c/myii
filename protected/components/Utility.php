@@ -44,4 +44,12 @@ class Utility
         $tmp   = $func->getDocComment();
         return $tmp;
     }
+
+    /**
+     * @param $str
+     * @return string
+     */
+    public static function getMd5Str($str){
+        return md5(Yii::app()->params['uniqueId'].$str);
+    }
 }

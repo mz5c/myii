@@ -11,7 +11,7 @@ return array(
 
 	// preloading 'log' component
 	'preload'=>array('log'),
-	//'defaultController'=>'admin/default',
+	'defaultController'=>'user/default',
 
 	// autoloading model and component classes
 	'import'=>array(
@@ -90,5 +90,6 @@ return array(
 	'params'=>array(
 		// this is used in contact page
 		'adminEmail'=>'w11w23c58@126.com',
+		'uniqueId'=>'rico',
 	),
 );
