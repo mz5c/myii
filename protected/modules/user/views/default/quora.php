@@ -7,7 +7,7 @@
             <form class="navbar-search" action="/user/default/index" id="global_search_form" method="post">
                 <input class="form-control search-query" type="text" placeholder="搜索问题、话题或人" autocomplete="off" name="q" id="aw-search-query">
                 <span title="搜索" id="global_search_btns" onclick="$('#global_search_form').submit();"><span class="glyphicon glyphicon-search"></span></span>
-                <div class="aw-dropdown" style="display: none;">
+                <div class="aw-dropdown">
                     <div class="mod-body">
                         <p class="title">输入关键字进行搜索</p>
                         <ul class="aw-dropdown-list hide"></ul>

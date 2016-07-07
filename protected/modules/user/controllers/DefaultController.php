@@ -32,6 +32,12 @@ class DefaultController extends Controller
 	}
 
 	public function actionUserDetail(){
+		$a = '';
+		$t = microtime(true);
+		for($i = 0;$i<10000;$i++){
+			$a .= 'sljkfdddddddddddddddddddddddddddlsdkjflksdjlkfjlskdjflksdjflkjsdlkjflksddddddddddddddddddddd';
+		}
+		echo microtime(true)-$t;die;
 		var_dump(Yii::app()->user->id);
 	}
 
