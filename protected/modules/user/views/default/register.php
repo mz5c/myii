@@ -1,6 +1,6 @@
 <div class="container">
     <a href="/"><img src="/images/desktop.jpg" class="img-responsive img-thumbnail"></a>
-    <form id="yyyyy" class="form-horizontal" role="form" action="/user/default/login" method="post">
+    <form id="yyyyy" class="form-horizontal" role="form" action="/user/default/register" method="post">
         <div class="form-group">
             <label for="user_name" class="col-sm-2 col-sm-offset-2 control-label">用户名</label>
             <div class="col-sm-4">
@@ -16,17 +16,15 @@
             </div>
         </div>
         <div class="form-group">
-            <div class="col-sm-offset-4 col-sm-4">
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" name="remember_me"> 请记住我
-                    </label>
-                </div>
+            <label for="repassword" class="col-sm-2 col-sm-offset-2 control-label">重复输入密码</label>
+            <div class="col-sm-4">
+                <input type="password" class="form-control" id="repassword" name="repassword" placeholder="请再次输入密码">
+                <p id="errmsg3" style="color: #ee0000;margin: 0;display: none;"></p>
             </div>
         </div>
         <div class="form-group">
             <div class="col-sm-offset-4 col-sm-4">
-                <button type="button" id="xxxxx" class="btn btn-default">登录</button>
+                <button type="button" id="xxxxx" class="btn btn-default">注册</button>
             </div>
         </div>
     </form>
@@ -37,6 +35,10 @@
             $('#errmsg1').show().html('用户名不能为空！');
         }else if($('#password').val() == ''){
             $('#errmsg2').show().html('密码不能为空！');
+        }else if($('#repassword').val() == ''){
+            $('#errmsg3').show().html('密码不能为空！');
+        }else if($('#password').val() != $('#repassword').val()){
+            $('#errmsg3').show().html('两次密码不同！');
         }else{
             $('#yyyyy').submit();
         }
@@ -51,8 +53,13 @@
             $('#errmsg2').hide();
         }
     });
+    $('#repassword').change(function () {
+        if($('#repassword').val() != ''){
+            $('#errmsg3').hide();
+        }
+    });
     var errmsg = '<?php echo $errmsg; ?>';
     if(errmsg != ''){
-        $('#errmsg2').show().html(errmsg);
+        $('#errmsg3').show().html(errmsg);
     }
 </script>

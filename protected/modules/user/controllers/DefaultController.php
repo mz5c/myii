@@ -46,4 +46,27 @@ class DefaultController extends Controller
         $this->pageTitle = 'Quora';
         $this->render('quora');
     }
+
+	public function actionRegister(){
+		$this->layout = '//layouts/index';
+		$this->pageTitle = 'Register';
+		$errmsg = '';
+		if(!empty($_POST)){
+			$userinfo = UserInfo::model()->findByAttributes(array('user_name'=>$_POST['user_name']));
+			if(isset($userinfo)){
+				$errmsg = '用户名已存在!';
+			}else{
+				$userinfo = new UserInfo();
+				$userinfo->user_name = $_POST['user_name'];
+				$userinfo->password = Utility::getMd5Str($_POST['password']);
+				$userinfo->email = 'w11w23c58@126.com';
+				$userinfo->create_time = date('Y-m-d H:i:s');
+				$userinfo->save();
+				$user = new UserIdentity($_POST['user_name'],$_POST['password']);
+				Yii::app()->user->login($user,3600);
+				$this->redirect('/');
+			}
+		}
+		$this->render('register',array('errmsg'=>$errmsg));
+	}
 }

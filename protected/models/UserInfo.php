@@ -29,6 +29,7 @@ class UserInfo extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('user_name, password, email', 'required'),
+			array('user_name', 'unique', 'on'=>'create'),
 			array('status', 'numerical', 'integerOnly'=>true),
 			array('user_name, password, email', 'length', 'max'=>128),
 			// The following rule is used by search().
