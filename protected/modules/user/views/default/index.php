@@ -1,5 +1,4 @@
 <div class="container">
-    <a href="/"><img src="/images/desktop.jpg" class="img-responsive img-thumbnail"></a>
     <div class="row" style="margin-top: 10px;">
         <nav class="navbar navbar-default" role="navigation">
             <div class="navbar-header">
@@ -10,7 +9,7 @@
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Search" id="media_search">
                     </div>
-                    <button type="button" class="btn btn-default" id="go_search">提交按钮</button>
+                    <button type="button" class="btn btn-default" id="go_search">搜索</button>
                 </div>
                 <a href="/user/default/quora" class="btn btn-default navbar-btn">Quora</a>
                 <?php if(empty(Yii::app()->user->id)){ ?>
@@ -22,11 +21,10 @@
                 <?php } ?>
             </div>
         </nav>
-        <div class="col-sm-3">1</div>
-        <div class="col-sm-3">2</div>
-        <div class="col-sm-3">3</div>
-        <div class="col-sm-3">4</div>
     </div>
+</div>
+<div style="width: 30%;margin: 0 auto;">
+    <a href="/"><img src="/images/desktop.jpg" class="img-responsive img-thumbnail"></a>
 </div>
 <script>
     function geSearch(){

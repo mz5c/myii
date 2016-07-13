@@ -29,11 +29,11 @@ class ApiTestServices extends CComponent{
      * @return string area
      */
     public function getAreaByIp($ip){
-        $url = 'http://www.ip138.com/ips138.asp?ip='.$ip.'&action=2';
+        $url = 'http://www.ip138.com/ips1388.asp?ip='.$ip.'&action=2';
         $res = $this->https_request($url);
         $res = mb_convert_encoding($res, "UTF-8", "GBK");
         $area = array();
-        preg_match_all('|<td align="center"><ul class="ul1"><li>本站主数据：([^\r\n]*)</li><li>参考数据|', $res, $area);
+        preg_match_all('|<td align="center"><ul class="ul1"><li>本站数据：([^\r\n]*)</li><li>参考数据1|', $res, $area);
         return $area[1][0];
     }
 

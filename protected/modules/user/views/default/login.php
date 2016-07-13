@@ -1,5 +1,4 @@
-<div class="container">
-    <a href="/"><img src="/images/desktop.jpg" class="img-responsive img-thumbnail"></a>
+<div class="container" style="position: absolute;top: 50%;left: 50%;-webkit-transform: translate(-50%,-50%);-moz-transform: translate(-50%,-50%);-ms-transform: translate(-50%,-50%);-o-transform: translate(-50%,-50%);transform: translate(-50%,-50%);">
     <form id="yyyyy" class="form-horizontal" role="form" action="/user/default/login" method="post">
         <div class="form-group">
             <label for="user_name" class="col-sm-2 col-sm-offset-2 control-label">用户名</label>
@@ -19,7 +18,7 @@
             <div class="col-sm-offset-4 col-sm-4">
                 <div class="checkbox">
                     <label>
-                        <input type="checkbox" name="remember_me"> 请记住我
+                        <input type="checkbox" name="remember_me" style="margin-top: 5px"> 请记住我
                     </label>
                 </div>
             </div>
@@ -27,6 +26,7 @@
         <div class="form-group">
             <div class="col-sm-offset-4 col-sm-4">
                 <button type="button" id="xxxxx" class="btn btn-default">登录</button>
+                <button type="button" class="btn btn-default" onclick="location.href='/'">取消</button>
             </div>
         </div>
     </form>

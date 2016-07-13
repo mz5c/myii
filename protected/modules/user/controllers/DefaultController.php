@@ -69,4 +69,35 @@ class DefaultController extends Controller
 		}
 		$this->render('register',array('errmsg'=>$errmsg));
 	}
+
+	public function actionGetUserList(){
+		$this->layout = '//layouts/index';
+		$this->pageTitle = 'user_list';
+		$res = Yii::app()->db->createCommand("select id,user_name,email,create_time from myii_user")->queryAll();
+		$this->render('user_list',array('data'=>$res));
+	}
+
+	public function actionModifyUserInfo(){
+		$user_name = Yii::app()->request->getParam('user_name');
+		$email = Yii::app()->request->getParam('email');
+		if(empty($user_name) || empty($email)){
+			echo json_encode(array('status'=>0,'info'=>'参数不能为空'));
+			exit();
+		}else{
+			$userinfo = UserInfo::model()->findByAttributes(array('user_name'=>$user_name));
+			if(!isset($userinfo)){
+				echo json_encode(array('status'=>0,'info'=>'用户名不存在'));
+				exit();
+			}else{
+				$userinfo->email = $email;
+				if($userinfo->save()){
+					echo json_encode(array('status'=>1,'info'=>'修改成功'));
+					exit();
+				}else{
+					echo json_encode(array('status'=>0,'info'=>'修改失败'));
+					exit();
+				}
+			}
+		}
+	}
 }
