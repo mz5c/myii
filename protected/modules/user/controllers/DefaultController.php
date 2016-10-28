@@ -4,48 +4,27 @@ class DefaultController extends Controller
 {
 	public function actionIndex()
 	{
-		$this->pageTitle = 'user-index';
+		$this->pageTitle = 'welcome';
 		$this->layout = '//layouts/index';
 		$this->render('index');
 	}
 
 	public function actionLogin(){
 		$this->layout = '//layouts/index';
-		$this->pageTitle = 'login';
-		$errmsg = '';
-		if(!empty($_POST)){
-			$user_info = UserInfo::model()->findByAttributes(array('user_name'=>$_POST['user_name']));
-			if(isset($user_info) && $user_info->password == Utility::getMd5Str($_POST['password'])){
-				$user = new UserIdentity($_POST['user_name'],$_POST['password']);
-				Yii::app()->user->login($user,isset($_POST['remember_me']) ? 5 : 3600);
-				$this->redirect('/');
-			}else{
-				$errmsg = '用户名或密码错误！';
-			}
-		}
-		$this->render('login',array('errmsg'=>$errmsg));
+		$this->pageTitle = '用户登录';
+        if (Yii::app()->request->isAjaxRequest) {
+            $user_name = Yii::app()->request->getParam('user_name');
+            $password  = Yii::app()->request->getParam('password');
+            $remember_me = Yii::app()->request->getParam('remember_me');
+            $this->validateLogin($user_name, $password, $remember_me);
+        }
+		$this->render('login');
 	}
 
 	public function actionLogout(){
 		Yii::app()->user->logout();
 		$this->redirect('/');
 	}
-
-	public function actionUserDetail(){
-		$a = '';
-		$t = microtime(true);
-		for($i = 0;$i<10000;$i++){
-			$a .= 'sljkfdddddddddddddddddddddddddddlsdkjflksdjlkfjlskdjflksdjflkjsdlkjflksddddddddddddddddddddd';
-		}
-		echo microtime(true)-$t;die;
-		var_dump(Yii::app()->user->id);
-	}
-
-    public function actionQuora(){
-        $this->layout = '//layouts/index';
-        $this->pageTitle = 'Quora';
-        $this->render('quora');
-    }
 
 	public function actionRegister(){
 		$this->layout = '//layouts/index';
@@ -71,13 +50,15 @@ class DefaultController extends Controller
 	}
 
 	public function actionGetUserList(){
+        die;
 		$this->layout = '//layouts/index';
-		$this->pageTitle = 'user_list';
-		$res = Yii::app()->db->createCommand("select id,user_name,email,create_time from myii_user")->queryAll();
+		$this->pageTitle = '用户列表';
+		$res = Yii::app()->db->createCommand("select id,user_name,email,create_time from user")->queryAll();
 		$this->render('user_list',array('data'=>$res));
 	}
 
 	public function actionModifyUserInfo(){
+        die;
 		$user_name = Yii::app()->request->getParam('user_name');
 		$email = Yii::app()->request->getParam('email');
 		if(empty($user_name) || empty($email)){
@@ -100,4 +81,21 @@ class DefaultController extends Controller
 			}
 		}
 	}
+
+    protected function validateLogin($user_name, $password, $remember_me)
+    {
+        if (empty($user_name) || empty($password)) {
+            Utility::jsonOutput(-1, Langs::PARAM_INCOMPLETE);
+        }
+        $user = User::model()->findByAttributes(array('user_name' => $user_name));
+        if (empty($user)) {
+            Utility::jsonOutput(-1, Langs::USER_NOT_EXISTS);
+        }
+        if ($user->password != Utility::getMd5Str($password)) {
+            Utility::jsonOutput(-1, Langs::WRONG_PASSWORD);
+        }
+        $user_login = new UserIdentity($user->user_name, $user->password);
+        Yii::app()->user->login($user_login, $remember_me == 1 ? 7*24*3600 : 3600);
+        Utility::jsonOutput(200, Langs::SUCCESS);
+    }
 }

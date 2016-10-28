@@ -7,6 +7,18 @@ class SiteController extends Controller
 		return true;
 	}
 
+    public function actionError()
+    {
+        $this->layout = '//layouts/index';
+        if ($error=Yii::app()->errorHandler->error) {
+            if (Yii::app()->request->isAjaxRequest) {
+                echo $error['message'];
+            } else {
+                $this->render('error', $error);
+            }
+        }
+    }
+
 	public function actionLogout()
 	{
 		Yii::app()->user->logout();

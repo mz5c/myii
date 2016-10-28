@@ -10,6 +10,7 @@
 <!--    <link rel="stylesheet" type="text/css" href="/css/icon.css">-->
     <script src="/css/bootstrap-3.3.5-dist/jquery-2.1.4.min.js"></script>
     <script src="/css/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+    <script src="/js/layer-2.2/layer.js"></script>
     <title><?php echo CHtml::encode($this->pageTitle); ?></title>
 </head>
 

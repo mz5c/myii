@@ -52,4 +52,17 @@ class Utility
     public static function getMd5Str($str){
         return md5(Yii::app()->params['uniqueId'].$str);
     }
+
+    public  static function jsonOutput($code, $msg, $data = [])
+    {
+        $params = array(
+            'code' => $code,
+            'msg'  => $msg,
+            'data' => $data
+        );
+        header('Content-Type:application/json; charset=utf-8');
+        //header('Access-Control-Allow-Origin:*');
+        echo CJSON::encode($params);
+        exit();
+    }
 }
