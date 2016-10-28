@@ -1,13 +1,17 @@
 <?php
 
 /**
- * This is the model class for table "tbl_user".
+ * This is the model class for table "user".
  *
- * The followings are the available columns in table 'tbl_user':
+ * The followings are the available columns in table 'user':
  * @property integer $id
- * @property string $username
+ * @property string $user_name
  * @property string $password
+ * @property integer $sex
  * @property string $email
+ * @property string $nick_name
+ * @property string $create_time
+ * @property string $modify_time
  */
 class User extends CActiveRecord
 {
@@ -16,7 +20,7 @@ class User extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'tbl_user';
+		return 'user';
 	}
 
 	/**
@@ -27,12 +31,12 @@ class User extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('username, password, email', 'required'),
-			array('username, password, email', 'length', 'max'=>128),
+			array('sex', 'numerical', 'integerOnly'=>true),
+			array('user_name, password, email, nick_name', 'length', 'max'=>100),
+			array('create_time, modify_time', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, username, password, email', 'safe', 'on'=>'search'),
-			array('fstatus','safe'),
+			array('id, user_name, password, sex, email, nick_name, create_time, modify_time', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -53,10 +57,14 @@ class User extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'username' => 'Username',
-			'password' => 'Password',
-			'email' => 'Email',
+			'id' => '主键',
+			'user_name' => '登录用户名',
+			'password' => '登录密码',
+			'sex' => '用户性别 0：未知 男：1 女：2',
+			'email' => '用户邮箱',
+			'nick_name' => '用户呢称',
+			'create_time' => '创建时间',
+			'modify_time' => '修改时间',
 		);
 	}
 
@@ -79,9 +87,13 @@ class User extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('username',$this->username,true);
+		$criteria->compare('user_name',$this->user_name,true);
 		$criteria->compare('password',$this->password,true);
+		$criteria->compare('sex',$this->sex);
 		$criteria->compare('email',$this->email,true);
+		$criteria->compare('nick_name',$this->nick_name,true);
+		$criteria->compare('create_time',$this->create_time,true);
+		$criteria->compare('modify_time',$this->modify_time,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

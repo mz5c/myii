@@ -40,6 +40,6 @@ class UserIdentity extends CUserIdentity
 	 */
 	public function getId()
 	{
-		return $this->username;
+		return User::model()->findByAttributes(array('user_name' => $this->username))->id;
 	}
 }
