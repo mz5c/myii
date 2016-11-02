@@ -20,15 +20,16 @@ class DefaultController extends Controller
 	}
 
 	public function actionTest(){
-		echo Yii::app()->user->id;die;
-		echo $this->module->id;
-		echo $this->getModule()->getId();
 		echo $this->id;
-		echo $this->getId();
-		echo $this->action->id;
-		echo $this->getAction()->getId();
-		echo $this->uniqueId;
-		echo $this->getUniqueId();
+		//echo Yii::app()->user->id;
+		//echo $this->module->id;
+		//echo $this->getModule()->getId();
+		//echo $this->id;
+		//echo $this->getId();
+		//echo $this->action->id;
+		//echo $this->getAction()->getId();
+		//echo $this->uniqueId;
+		//echo $this->getUniqueId();
 	}
 
 	public function actionLogin($name='abc',$passwd='123456'){

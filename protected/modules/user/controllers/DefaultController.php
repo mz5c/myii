@@ -29,24 +29,12 @@ class DefaultController extends Controller
 	public function actionRegister(){
 		$this->layout = '//layouts/index';
 		$this->pageTitle = 'Register';
-		$errmsg = '';
-		if(!empty($_POST)){
-			$userinfo = UserInfo::model()->findByAttributes(array('user_name'=>$_POST['user_name']));
-			if(isset($userinfo)){
-				$errmsg = '用户名已存在!';
-			}else{
-				$userinfo = new UserInfo();
-				$userinfo->user_name = $_POST['user_name'];
-				$userinfo->password = Utility::getMd5Str($_POST['password']);
-				$userinfo->email = 'w11w23c58@126.com';
-				$userinfo->create_time = date('Y-m-d H:i:s');
-				$userinfo->save();
-				$user = new UserIdentity($_POST['user_name'],$_POST['password']);
-				Yii::app()->user->login($user,3600);
-				$this->redirect('/');
-			}
+		if (Yii::app()->request->isAjaxRequest) {
+			$user_name = Yii::app()->request->getParam('user_name');
+			$password  = Yii::app()->request->getParam('password');
+			$this->validateRegister($user_name, $password);
 		}
-		$this->render('register',array('errmsg'=>$errmsg));
+		$this->render('register');
 	}
 
 	public function actionGetUserList(){
@@ -98,4 +86,24 @@ class DefaultController extends Controller
         Yii::app()->user->login($user_login, $remember_me == 1 ? 7*24*3600 : 3600);
         Utility::jsonOutput(200, Langs::SUCCESS);
     }
+
+	protected function validateRegister($user_name, $password)
+	{
+		if (empty($user_name) || empty($password)) {
+			Utility::jsonOutput(-1, Langs::PARAM_INCOMPLETE);
+		}
+		$user = User::model()->findByAttributes(array('user_name' => $user_name));
+		if (!empty($user)) {
+			Utility::jsonOutput(-1, Langs::USER_ALREADY_EXISTS);
+		}
+		$user = new User();
+		$user->user_name   = $user_name;
+		$user->password    = Utility::getMd5Str($password);
+		$user->create_time = date('Y-m-d H:i:s');
+		$user->modify_time = date('Y-m-d H:i:s');
+		$user->save();
+		$user_login = new UserIdentity($user->user_name, $user->password);
+		Yii::app()->user->login($user_login, 7*24*3600);
+		Utility::jsonOutput(200, Langs::SUCCESS);
+	}
 }
