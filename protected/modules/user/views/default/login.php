@@ -32,7 +32,7 @@
 </div>
 <script>
     $(function () {
-        $('#user_login').on('click', function () {
+        function login(){
             var user_name = $('#user_name').val();
             var password = $('#password').val();
             var remember_me = $('#remember_me').prop('checked') == true ? 1 : 0;
@@ -56,6 +56,16 @@
                     console.log('error');
                 }
             });
+        };
+
+        $('#user_login').on('click', function () {
+            login();
+        });
+
+        $('#password').bind('keypress', function (event) {
+            if(event.keyCode == '13'){
+                login();
+            }
         });
     });
 </script>

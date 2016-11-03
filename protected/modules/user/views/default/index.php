@@ -16,7 +16,7 @@
                     <a href="/user/default/login" class="btn btn-info navbar-btn pull-right" style="margin-right: 5px;">登录</a>
                 <?php }else{ ?>
                     <a href="/user/default/logout" class="btn btn-default navbar-btn pull-right" style="margin-right: 5px;">退出</a>
-                    <a href="/user/default/userdetail" class="btn btn-info navbar-btn pull-right" style="margin-right: 5px;"><?php echo Yii::app()->user->name; ?></a>
+                    <a href="/user/default/gotobackend" class="btn btn-info navbar-btn pull-right" style="margin-right: 5px;"><?php echo Yii::app()->user->name; ?></a>
                 <?php } ?>
             </div>
         </nav>
