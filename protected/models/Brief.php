@@ -1,27 +1,25 @@
 <?php
 
 /**
- * This is the model class for table "user".
+ * This is the model class for table "brief".
  *
- * The followings are the available columns in table 'user':
+ * The followings are the available columns in table 'brief':
  * @property integer $id
- * @property string $user_name
- * @property string $password
- * @property integer $sex
- * @property string $email
- * @property string $nick_name
+ * @property string $bid
+ * @property string $title
+ * @property string $content
  * @property integer $status
  * @property string $create_time
  * @property string $modify_time
  */
-class User extends CActiveRecord
+class Brief extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'user';
+		return 'brief';
 	}
 
 	/**
@@ -32,12 +30,13 @@ class User extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('sex, status', 'numerical', 'integerOnly'=>true),
-			array('user_name, password, email, nick_name', 'length', 'max'=>100),
+			array('status', 'numerical', 'integerOnly'=>true),
+			array('bid, title', 'length', 'max'=>100),
+			array('content', 'length', 'max'=>200),
 			array('create_time, modify_time', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, user_name, password, sex, email, nick_name, status, create_time, modify_time', 'safe', 'on'=>'search'),
+			array('id, bid, title, content, status, create_time, modify_time', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -58,15 +57,13 @@ class User extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => '主键',
-			'user_name' => '登录用户名',
-			'password' => '登录密码',
-			'sex' => '用户性别 0：未知 男：1 女：2',
-			'email' => '用户邮箱',
-			'nick_name' => '用户呢称',
+			'id' => 'ID',
+			'bid' => '序号',
+			'title' => '标题',
+			'content' => '内容',
 			'status' => '1：正常 0：删除',
 			'create_time' => '创建时间',
-			'modify_time' => '修改时间',
+			'modify_time' => '更新时间',
 		);
 	}
 
@@ -89,11 +86,9 @@ class User extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('user_name',$this->user_name,true);
-		$criteria->compare('password',$this->password,true);
-		$criteria->compare('sex',$this->sex);
-		$criteria->compare('email',$this->email,true);
-		$criteria->compare('nick_name',$this->nick_name,true);
+		$criteria->compare('bid',$this->bid,true);
+		$criteria->compare('title',$this->title,true);
+		$criteria->compare('content',$this->content,true);
 		$criteria->compare('status',$this->status);
 		$criteria->compare('create_time',$this->create_time,true);
 		$criteria->compare('modify_time',$this->modify_time,true);
@@ -104,13 +99,37 @@ class User extends CActiveRecord
 	}
 
 	/**
+	 * @return CDbConnection the database connection used for this class
+	 */
+	public function getDbConnection()
+	{
+		return Yii::app()->db_sec;
+	}
+
+	/**
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return User the static model class
+	 * @return Brief the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
+	}
+
+	public static function getList($page = 1, $page_size = 10, $where = '', $order_by = 'order by id desc')
+	{
+        $offset     = ($page - 1) * $page_size;
+        $sql        = "select SQL_CALC_FOUND_ROWS * from brief $where $order_by limit $offset, $page_size";
+        $list       = Yii::app()->db_sec->createCommand($sql)->queryAll();
+        $total      = Yii::app()->db_sec->createCommand("select FOUND_ROWS()")->queryScalar();
+        $total_page = $total > 0 ? ceil($total / $page_size) : 0;
+        return array(
+            'page'       => $page,
+            'page_size'  => $page_size,
+            'total'      => $total,
+            'total_page' => $total_page,
+            'items'      => $list
+        );
 	}
 }

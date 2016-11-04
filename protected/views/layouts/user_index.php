@@ -38,10 +38,10 @@
         </nav>
         <div class="col-md-2">
             <ul class="nav nav-stacked nav-pills well">
-                <li class="active">
+                <li action-url="/user/home/index">
                     <a href="/user/home/index">首页</a>
                 </li>
-                <li>
+                <li action-url="/user/brief/index">
                     <a href="/user/brief/index">Brief</a>
                 </li>
                 <!--<li class="nav-header">
@@ -63,6 +63,11 @@
 
     </div>
 </div>
-
+<script>
+    $(function () {
+        var pathname = window.location.pathname;
+        $("li[action-url='" + pathname + "']").addClass('active');
+    });
+</script>
 </body>
 </html>

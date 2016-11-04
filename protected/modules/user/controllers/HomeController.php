@@ -12,7 +12,8 @@ class HomeController extends Controller
 
 	public function actionIndex()
 	{
-		$this->render('index');
+        $res = Brief::getList(1, 9);
+        $this->render('index', $res);
 	}
 
 	// Uncomment the following methods and override them if needed
