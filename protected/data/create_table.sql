@@ -14,6 +14,7 @@ CREATE TABLE `user` (
 
 CREATE TABLE `brief` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uid` int(11) NOT NULL COMMENT '用户id',
   `bid` varchar(100) NOT NULL DEFAULT '' COMMENT '序号',
   `title` varchar(100) NOT NULL DEFAULT '' COMMENT '标题',
   `content` varchar(200) NOT NULL DEFAULT '' COMMENT '内容',
