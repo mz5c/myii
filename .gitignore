@@ -1,4 +1,4 @@
 .idea
 application.log
-assets/*
-protected/runtime/*
+/assets/*
+/protected/runtime/*

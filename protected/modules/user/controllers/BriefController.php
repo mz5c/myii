@@ -13,7 +13,7 @@ class BriefController extends Controller
 	public function actionIndex()
 	{
         $page = Yii::app()->request->getParam('page', 1);
-        $res = Brief::getList($page, 6);
+        $res = Brief::getList($page, 6, 'uid=' . Yii::app()->user->id);
         $res['page_baseUrl'] = '/user/brief/index';
 		$this->render('index', $res);
 	}
@@ -27,6 +27,7 @@ class BriefController extends Controller
                 Utility::jsonOutput(-1, Langs::PARAM_INCOMPLETE);
             }
             $brief = new Brief();
+            $brief->uid = Yii::app()->user->id;
             $brief->bid = date('YmdHis') . Yii::app()->user->id;
             $brief->title = $title;
             $brief->content = $content;
@@ -38,5 +39,24 @@ class BriefController extends Controller
             Utility::jsonOutput(-1, Langs::FAILED);
         }
         $this->render('add');
+    }
+
+    public function actionDelete()
+    {
+        if (Yii::app()->request->isAjaxRequest) {
+            $bid = Yii::app()->request->getParam('bid');
+            if (empty($bid)) {
+                Utility::jsonOutput(-1, Langs::PARAM_INCOMPLETE);
+            }
+            $brief = Brief::model()->findByAttributes(array('uid' => Yii::app()->user->id, 'bid' => $bid));
+            if (empty($brief)) {
+                Utility::jsonOutput(-1, Langs::FAILED);
+            }
+            $brief->status = 0;
+            if ($brief->save()) {
+                Utility::jsonOutput(200, Langs::SUCCESS);
+            }
+            Utility::jsonOutput(-1, Langs::FAILED);
+        }
     }
 }

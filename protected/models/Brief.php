@@ -5,6 +5,7 @@
  *
  * The followings are the available columns in table 'brief':
  * @property integer $id
+ * @property integer $uid
  * @property string $bid
  * @property string $title
  * @property string $content
@@ -30,13 +31,13 @@ class Brief extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('status', 'numerical', 'integerOnly'=>true),
+			array('uid, status', 'numerical', 'integerOnly'=>true),
 			array('bid, title', 'length', 'max'=>100),
 			array('content', 'length', 'max'=>200),
 			array('create_time, modify_time', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, bid, title, content, status, create_time, modify_time', 'safe', 'on'=>'search'),
+			array('id, uid, bid, title, content, status, create_time, modify_time', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -58,6 +59,7 @@ class Brief extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
+			'uid' => '用户id',
 			'bid' => '序号',
 			'title' => '标题',
 			'content' => '内容',
@@ -86,6 +88,7 @@ class Brief extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
+		$criteria->compare('uid',$this->uid);
 		$criteria->compare('bid',$this->bid,true);
 		$criteria->compare('title',$this->title,true);
 		$criteria->compare('content',$this->content,true);
@@ -120,6 +123,7 @@ class Brief extends CActiveRecord
 	public static function getList($page = 1, $page_size = 10, $where = '', $order_by = 'order by id desc')
 	{
         $offset     = ($page - 1) * $page_size;
+        $where      = empty($where) ? 'where status = 1' : "where status = 1 and ($where)";
         $sql        = "select SQL_CALC_FOUND_ROWS * from brief $where $order_by limit $offset, $page_size";
         $list       = Yii::app()->db_sec->createCommand($sql)->queryAll();
         $total      = Yii::app()->db_sec->createCommand("select FOUND_ROWS()")->queryScalar();

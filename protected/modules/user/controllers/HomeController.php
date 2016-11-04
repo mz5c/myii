@@ -12,7 +12,7 @@ class HomeController extends Controller
 
 	public function actionIndex()
 	{
-        $res = Brief::getList(1, 9);
+        $res = Brief::getList(1, 9, 'uid=' . Yii::app()->user->id);
         $this->render('index', $res);
 	}
 

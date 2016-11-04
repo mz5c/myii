@@ -7,8 +7,8 @@
  */
 class Langs
 {
-    const SUCCESS                    = '成功';
-    const FAILED                     = '失败';
+    const SUCCESS                    = '操作成功';
+    const FAILED                     = '操作失败';
     const PARAM_INCOMPLETE           = '参数不全';
     const ILLEGAL                    = '非法操作';
 
