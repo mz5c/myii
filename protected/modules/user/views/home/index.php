@@ -21,5 +21,5 @@
                 注意!
             </h4> <strong>Warning!</strong> There is nothing. You can <a href="/user/brief/add" class="alert-link">add new brief</a>
         </div>
-    <? } ?>
+    <?php } ?>
 </div>
