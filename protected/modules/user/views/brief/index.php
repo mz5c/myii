@@ -8,6 +8,7 @@
 			<th>编号</th>
 			<th>Title</th>
 			<th>Content</th>
+            <th>Time</th>
 			<th>操作</th>
 		</tr>
 		</thead>
@@ -21,10 +22,11 @@
         ?>
         <?php foreach ($items as $key => $val) { ?>
             <tr class="<?=$color[$key%3]?>">
-                <td><?=$val['bid']?></td>
+                <td><a href="/user/brief/detail?bid=<?=$val['bid']?>"><?=$val['bid']?></a></td>
                 <td><?=$val['title']?></td>
                 <td><?=$val['content']?></td>
-                <td><a href="javascript:;" onclick="deleteBrief(<?=$val['bid']?>)">xxx</a></td>
+                <td><?=$val['create_time']?></td>
+                <td><a href="javascript:;" onclick="deleteBrief(<?=$val['bid']?>)">delete</a></td>
             </tr>
         <?php } ?>
 		</tbody>

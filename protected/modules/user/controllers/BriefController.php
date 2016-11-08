@@ -59,4 +59,38 @@ class BriefController extends Controller
             Utility::jsonOutput(-1, Langs::FAILED);
         }
     }
+
+    public function actionDetail()
+    {
+        $bid = Yii::app()->request->getParam('bid');
+        $brief = Brief::model()->findByAttributes(array('bid' => $bid, 'uid' => Yii::app()->user->id));
+        if (empty($brief)) {
+            $this->redirect('/user/brief/index');
+        }
+        $this->render('detail', array('info' => $brief));
+    }
+
+    public function actionEdit()
+    {
+        $bid = Yii::app()->request->getParam('bid');
+        $brief = Brief::model()->findByAttributes(array('bid' => $bid, 'uid' => Yii::app()->user->id));
+        if (Yii::app()->request->isAjaxRequest) {
+            if (empty($brief)) {
+                Utility::jsonOutput(-1, Langs::FAILED);
+            }
+            $title = Yii::app()->request->getParam('title');
+            $content = Yii::app()->request->getParam('content');
+            $brief->title = $title;
+            $brief->content = $content;
+            $brief->modify_time = date('Y-m-d H:i:s');
+            if ($brief->save()) {
+                Utility::jsonOutput(200, Langs::SUCCESS);
+            }
+            Utility::jsonOutput(-1, Langs::FAILED);
+        }
+        if (empty($brief)) {
+            $this->redirect('/user/brief/index');
+        }
+        $this->render('edit', array('info' => $brief));
+    }
 }

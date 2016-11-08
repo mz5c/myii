@@ -16,6 +16,13 @@ class HomeController extends Controller
         $this->render('index', $res);
 	}
 
+	public function actionTest()
+	{
+		$res = Utility::myCurl('https://www.mi.com/');
+        echo '<xmp>';var_dump($res);die;
+        echo $res['content'];
+	}
+
 	// Uncomment the following methods and override them if needed
 	/*
 	public function filters()
