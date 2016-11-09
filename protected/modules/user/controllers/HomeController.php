@@ -18,7 +18,7 @@ class HomeController extends Controller
 
 	public function actionTest()
 	{
-		$res = Utility::myCurl('https://www.mi.com/');
+		$res = Utility::myCurl('https://www.xxx.com/');
         echo '<xmp>';var_dump($res);die;
         echo $res['content'];
 	}
