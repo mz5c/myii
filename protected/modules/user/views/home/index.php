@@ -1,6 +1,5 @@
 <div class="col-md-10">
-    <?php $color = array('', 'success', 'info'); ?>
-    <?php foreach ($items as $key => $val) { ?>
+    <?php foreach ($items as $val) { ?>
         <div class="col-md-4">
             <div class="panel panel-info">
                 <div class="panel-heading">
@@ -8,8 +7,9 @@
                         <?=$val['title']?>
                     </h3>
                 </div>
-                <div class="panel-body">
+                <div class="panel-body" style="padding-bottom: 0;">
                     <?=$val['content']?>
+                    <p class="text-right"><?=$val['time_pass']?></p>
                 </div>
             </div>
         </div>

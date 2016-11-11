@@ -53,6 +53,12 @@ class Utility
         return md5(Yii::app()->params['uniqueId'].$str);
     }
 
+    /**
+     * 输出json数据
+     * @param $code
+     * @param $msg
+     * @param array $data
+     */
     public static function jsonOutput($code, $msg, $data = [])
     {
         $params = array(
@@ -66,6 +72,12 @@ class Utility
         exit();
     }
 
+    /**
+     * curl
+     * @param $url
+     * @param string $data
+     * @return mixed
+     */
     public static function myCurl($url, $data = '')
     {
         $curl_options = array(
@@ -97,5 +109,41 @@ class Utility
         $header['content'] = $content;
 
         return $header;
+    }
+
+    /**
+     * how long time has passed
+     * @param $datetime
+     * @return string
+     */
+    public static function timePass($datetime)
+    {
+        $time = strtotime($datetime);
+        if (!$time || $time > time()) {
+            return 'invalid param';
+        }
+        $total  = time() - strtotime($datetime);
+        $minute = ($total / 60) % 60;
+        $hour   = ($total / (60 * 60)) % 24;
+        $day    = ($total / (60 * 60 * 24)) % 365;
+        $month  = floor($day / 30);
+        $year   = floor($total / (365 * 24 * 60 * 60));
+
+        if ($year) {
+            return $year > 1 ? "$year years ago" : "$year year ago";
+        }
+        if ($month) {
+            return $month > 1 ? "$month months ago" : "$month month ago";
+        }
+        if ($day) {
+            return $day > 1 ? "$day days ago" : "$day day ago";
+        }
+        if ($hour) {
+            return $hour > 1 ? "$hour hours ago" : "$hour hour ago";
+        }
+        if ($minute) {
+            return $minute > 1 ? "$minute minutes ago" : "$minute minute ago";
+        }
+        return 'a moment ago';
     }
 }

@@ -13,6 +13,9 @@ class HomeController extends Controller
 	public function actionIndex()
 	{
         $res = Brief::getList(1, 9, 'uid=' . Yii::app()->user->id);
+		foreach ($res['items'] as &$val) {
+			$val['time_pass'] = Utility::timePass($val['create_time']);
+		}
         $this->render('index', $res);
 	}
 
