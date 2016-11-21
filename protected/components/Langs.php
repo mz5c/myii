@@ -15,4 +15,5 @@ class Langs
     const USER_NOT_EXISTS            = '用户不存在';
     const USER_ALREADY_EXISTS        = '用户已存在';
     const WRONG_PASSWORD             = '密码错误';
+    const PASSWORD_NOT_CONSISTENT    = '密码不一致';
 }

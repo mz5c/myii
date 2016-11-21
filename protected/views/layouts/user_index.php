@@ -50,8 +50,8 @@
                 <li data-controller_name="info">
                     <a href="/user/info/index">资料</a>
                 </li>
-                <li>
-                    <a href="#">设置</a>
+                <li data-controller_name="setup">
+                    <a href="/user/setup/index">设置</a>
                 </li>
                 <li>
                     <a href="#">帮助</a>
