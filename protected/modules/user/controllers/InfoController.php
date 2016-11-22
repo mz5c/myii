@@ -29,6 +29,7 @@ class InfoController extends Controller
             $user->sex = $user_sex;
             $user->email = $user_email;
             $user->nick_name = $nick_name;
+			$user->modify_time = date('Y-m-d H:i:s');
             if ($user->save()) {
                 Utility::jsonOutput(200, Langs::SUCCESS);
             }
