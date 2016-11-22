@@ -30,9 +30,11 @@
                 <?php if(Yii::app()->user->name == 'Guest'){ ?>
                     <a href="/user/default/register" class="btn btn-default navbar-btn pull-right" style="margin-right: 5px;">注册</a>
                     <a href="/user/default/login" class="btn btn-info navbar-btn pull-right" style="margin-right: 5px;">登录</a>
-                <?php }else{ ?>
+                <?php }else{
+                    $user = User::model()->findByPk(Yii::app()->user->id);
+                    ?>
                     <a href="/user/default/logout" class="btn btn-default navbar-btn pull-right" style="margin-right: 5px;">退出</a>
-                    <a href="/user/default/gotobackend" class="btn btn-info navbar-btn pull-right" style="margin-right: 5px;"><?php echo Yii::app()->user->name; ?></a>
+                    <a href="/user/default/gotobackend" class="btn btn-info navbar-btn pull-right" style="margin-right: 5px;"><?php echo empty($user->nick_name) ? $user->user_name : $user->nick_name; ?></a>
                 <?php } ?>
             </div>
         </nav>
